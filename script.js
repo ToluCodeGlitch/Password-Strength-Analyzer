@@ -1,32 +1,34 @@
-const passwordInput = document.getElementById("password");
-const resultText = document.getElementById("result");
+document.addEventListener("DOMContentLoaded", function () {
+  const passwordInput = document.getElementById("password");
+  const strengthText = document.getElementById("strengthText");
+  const strengthBar = document.getElementById("strengthBar");
 
-passwordInput.addEventListener("input", () => {
-  const password = passwordInput.value;
-  const analysis = analyzePassword(password);
+  passwordInput.addEventListener("input", function () {
+    const password = passwordInput.value;
+    const result = checkPasswordStrength(password);
+    strengthText.innerText = result.label;
+    strengthText.style.color = result.color;
+    strengthBar.style.width = result.percent + "%";
+    strengthBar.style.backgroundColor = result.color;
+  });
 
-  resultText.textContent = analysis.message;
-  resultText.style.color = analysis.color;
+  function checkPasswordStrength(password) {
+    let score = 0;
+
+    if (password.length >= 8) score++;
+    if (/[A-Z]/.test(password)) score++;
+    if (/[0-9]/.test(password)) score++;
+    if (/[^A-Za-z0-9]/.test(password)) score++;
+    if (password.length >= 12) score++;
+
+    const levels = [
+      { label: "Very Weak", color: "red", percent: 20 },
+      { label: "Weak", color: "orangered", percent: 40 },
+      { label: "Moderate", color: "orange", percent: 60 },
+      { label: "Strong", color: "lightgreen", percent: 80 },
+      { label: "Very Strong", color: "green", percent: 100 },
+    ];
+
+    return levels[Math.min(score, levels.length - 1)];
+  }
 });
-
-function analyzePassword(password) {
-  let score = 0;
-
-  if (password.length >= 8) score++;
-  if (/[a-z]/.test(password)) score++;
-  if (/[A-Z]/.test(password)) score++;
-  if (/\d/.test(password)) score++;
-  if (/[^A-Za-z0-9]/.test(password)) score++;
-
-  if (password.length === 0) {
-    return { message: "", color: "#fff" };
-  }
-
-  if (score <= 2) {
-    return { message: "Weak Password", color: "#ff4d4d" };
-  } else if (score === 3 || score === 4) {
-    return { message: "Moderate Password", color: "#ffc107" };
-  } else {
-    return { message: "Strong Password", color: "#00e676" };
-  }
-}
