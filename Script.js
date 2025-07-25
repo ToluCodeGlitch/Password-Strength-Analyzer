@@ -1,35 +1,29 @@
-const passwordInput = document.getElementById("passwordInput");
-const strengthBar = document.getElementById("strengthBar");
-const strengthText = document.getElementById("strengthText");
+const passwordInput = document.getElementById("password");
+const resultText = document.getElementById("result");
 
-passwordInput.addEventListener("input", () => {
+passwordInput.addEventListener("input", function () {
   const password = passwordInput.value;
-  let score = 0;
-
-  if (password.length >= 8) score++;
-  if (/[A-Z]/.test(password)) score++;
-  if (/[a-z]/.test(password)) score++;
-  if (/[0-9]/.test(password)) score++;
-  if (/[\W_]/.test(password)) score++;
-
-  switch (score) {
-    case 0:
-    case 1:
-      strengthBar.style.width = "20%";
-      strengthBar.style.background = "#ff4d4d";
-      strengthText.textContent = "Very Weak 🔓";
-      break;
-    case 2:
-    case 3:
-      strengthBar.style.width = "50%";
-      strengthBar.style.background = "#ffaa00";
-      strengthText.textContent = "Moderate 🛡️";
-      break;
-    case 4:
-    case 5:
-      strengthBar.style.width = "100%";
-      strengthBar.style.background = "#00cc66";
-      strengthText.textContent = "Strong 🔐";
-      break;
-  }
+  const strength = checkPasswordStrength(password);
+  resultText.textContent = strength.message;
+  resultText.style.color = strength.color;
 });
+
+function checkPasswordStrength(password) {
+  let strength = 0;
+
+  if (password.length >= 8) strength += 1;
+  if (/[A-Z]/.test(password)) strength += 1;
+  if (/[a-z]/.test(password)) strength += 1;
+  if (/[0-9]/.test(password)) strength += 1;
+  if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+
+  if (strength === 0) {
+    return { message: "", color: "gray" };
+  } else if (strength <= 2) {
+    return { message: "Weak Password", color: "red" };
+  } else if (strength === 3 || strength === 4) {
+    return { message: "Moderate Password", color: "orange" };
+  } else {
+    return { message: "Strong Password", color: "green" };
+  }
+}
