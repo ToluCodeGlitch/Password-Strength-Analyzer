@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 450px;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #4fc3f7;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
+}
+
+input[type="password"] {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 1rem;
+  outline: none;
+  margin-bottom: 15px;
+  box-shadow: 0 0 5px rgba(255,255,255,0.1);
+}
+
+.strength-container {
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 12px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.strength-bar {
+  height: 100%;
+  width: 0%;
+  transition: width 0.4s ease-in-out;
+  border-radius: 10px;
+}
+
+.strength-label {
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+footer {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+footer a {
+  color: #4fc3f7;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
