@@ -1,0 +1,55 @@
+body {
+  background-color: #0f0f0f;
+  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #1a1a1a;
+  padding: 40px;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  margin-top: 15px;
+  outline: none;
+}
+
+#strengthBar {
+  height: 10px;
+  width: 100%;
+  background-color: #333;
+  border-radius: 5px;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+}
+
+#tips {
+  text-align: left;
+  font-size: 0.85rem;
+  color: #aaa;
+  margin-top: 15px;
+  list-style: none;
+  padding-left: 0;
+}
+
+#tips li {
+  margin: 4px 0;
+}
+
+#strengthText {
+  margin-top: 10px;
+  font-weight: bold;
+}
